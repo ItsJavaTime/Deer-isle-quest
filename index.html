@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,11 +21,27 @@
             </nav>
     </header>
     <main>
-        
+        <section class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <h2>This is slide 1</h2>
+                    </li>
+                    
+                    <li class="splide__slide">
+                        <h2>This is slide 2</h2>
+                    </li>
+                </ul>
+            </div>
+        </section>
     </main>
     <footer>
 
     </footer>
     </div>
+
+    <script>
+        new Splide( '.splide' ).mount();
+    </script>
 </body>
 </html>
