@@ -157,7 +157,14 @@ main {
     height: 100%;
     box-sizing: border-box;
     overflow: auto;
-    padding: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+}
+
+h2 {
+    text-align: center;
+    text-decoration: none;
 }
 
 /* Images panel inside slide (child of quest_prep) */
