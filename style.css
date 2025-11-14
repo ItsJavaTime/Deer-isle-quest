@@ -1,117 +1,218 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Responsive design variables */
+:root {
+    --site-max: 1400px;
+    --gutter: clamp(12px, 3vw, 48px);
+    --panel-left: 30%;
+    --panel-right: 70%;
+    --logo-max-h: clamp(40px, 7vh, 100px);
+    --base-font: clamp(14px, 1.6vw, 18px);
+}
+
+/* Body styles (parent) */
 body {
-    width: 100%;
-    height: 1200px;
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: center;
-    background-color: darkgray;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 0;
+    background-color: black;
 }
 
-.wraper {
+/* Wrapper container (parent) */
+.wrapper {
     display: grid;
-    grid-template-columns: repeat(28, 50px);
-    grid-template-rows: repeat(24, 50px);
+    grid-template-columns: repeat(34, minmax(0, 1fr));
+    grid-template-rows: auto 1fr auto;
+    width: 100%;
+    max-width: var(--site-max);
+    margin: 0 auto;
 }
 
+/* Header (parent) */
 header {
-    grid-column: 1/29;
-    grid-row: 1/4;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    height: 150px;
     background-color: black;
     display: flex;
     align-items: center;
+    position: relative;
 }
 
+/* Logo container inside header (child of header) */
 .logo {
     display: flex;
-    width: 250px;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
     position: absolute;
-    padding: 20px;
 }
 
+/* Logo image inside logo (child of .logo) */
+.logo img {
+    display: block;
+    max-height: 100px;
+    height: 100%;
+    width: auto;
+    max-width: none;
+}
+
+/* Navigation menu inside header (child of header) */
 .menu {
     display: flex;
     width: 100%;
     justify-content: center;
+    gap: 50px;
 }
 
- .home, .maps, .info {
-    border-radius: 0.2rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    padding-top: 0.1rem;
-    padding-bottom: 0.1rem;
-    width: 60px;
-    text-align: center;
+/* Navigation items (children of .menu) */
+.home, .maps, .info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    box-sizing: border-box;
     text-decoration: none;
     color: white;
     font-size: 22px;
+    border: 1px solid white;
+    border-radius: 0.3rem;
 }
 
+/* Main content area (parent) */
 main {
-    grid-column: 1/29;
-    grid-row: 4/22;
-    background-color: rgb(51, 51, 51);
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-main::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 25px;
-        background: linear-gradient(
-        to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 50%, rgb(0, 0, 0) 100%);
-    pointer-events: none;
-}
-
-main::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 25px;
-    background: linear-gradient(
-        to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 50%, rgb(0, 0, 0) 100%);
-    pointer-events: none;
-}
-
-.splide {
-    background-color: rgb(51, 51, 51);
-    height: 800px;
-    width: 1400px;
-    display: flex;
-    align-items: center;
-}
-
-.quest_info_1 {
-    background-color: grey;
-    height: 700px;
-    width: 400px;
-}
-
-.quest_imgs_1 {
-    background-color: gray;
-    height: 700px;
-    width: 700px;
-}
-
-.slide_content_1 {
-    display: flex;
-    height: 700px;
-    width: 1400px;
-    gap: 100px;
-    justify-content: center;
-}
-
-footer {
-    grid-column: 1/29;
-    grid-row: 22/25;
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    width: 100%;
+    max-width: 1700px;
     background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    min-height: 0;
+}
+
+/* Slider container inside main (parent) */
+.splide {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background-color: rgb(24,24,24);
+    display: flex;
+    align-items: stretch; /* children fill height */
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Slider track and list (children of .splide) */
+.splide__track,
+.splide__list {
+    max-width: 100%;
+    overflow: hidden;
+    width: 100% !important;
+}
+
+/* Individual slide (child of .splide__list) */
+.splide__slide {
+    box-sizing: border-box;
+    min-width: 0;
+    max-width: 100%;
+    height: auto !important;
+    width: 100% !important;
+    aspect-ratio: 16 / 9;
+}
+
+/* Slide content (child of .splide__slide) */
+.splide__slide > .slide_content_1 {
+    width: 100%;
+    height: 100%;
+}
+
+/* Content wrapper inside slides (parent) */
+.slide_content_prep {
+    --slide-padding: clamp(12px, 2.5vw, 50px);
+    display: flex;
+    gap: var(--slide-padding);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    padding: var(--slide-padding);
+}
+
+/* Panels container inside slide (parent) */
+.quest_prep {
+    background-color: whitesmoke;
+    flex: 0 0 var(--panel-left);
+    max-width: 40%;
+    min-width: 220px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    padding: 12px;
+}
+
+/* Images panel inside slide (child of quest_prep) */
+.quest_prep_imgs {
+    background-color: whitesmoke;
+    flex: 1 1 var(--panel-right);
+    min-width: 260px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+/* Small screen adjustments for slide content and panels */
+@media (max-width: 900px) {
+    .slide_content_prep {
+        flex-direction: column;
+        --slide-padding: 12px;
+    }
+    .quest_prep,
+    .quest_prep_imgs {
+        flex: 0 1 100%;
+        width: 100%;
+        height: auto;
+        min-width: 0;
+    }
+}
+
+/* Other slide panels (children of quest_info or quest_imgs classes) */
+[class^="quest_info"],
+[class^="quest_imgs"] {
+    background-color: rgb(255,255,255);
+    height: 100%;
+    flex: 0 1 45%;
+    min-width: 220px;
+    max-width: 900px;
+    overflow: auto;
+}
+
+/* Footer (parent) */
+footer {
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+    height: 150px;
+    background-color: black;
+}
+
+/* Responsive adjustments for header, main, slider, footer on smaller screens */
+@media (max-width: 1000px) {
+    header,
+    main,
+    .splide,
+    footer {
+        width: 95%;
+    }
+    .splide {
+        padding: 0 16px;
+    }
 }
